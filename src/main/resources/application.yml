@@ -1,0 +1,35 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: dear-comrade-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - prometheus
+web:
+  cors:
+    allowed-origins:
+      - "http://localhost:4200"
+    allowed-methods:
+      - GET
+      - POST
+      - PATCH
+      - PUT
+      - DELETE
+      - OPTIONS
+      - HEAD
+    max-age: 3600
+    allowed-headers:
+      - "Requestor-Type"
+    exposed-headers:
+      - "X-Get-Header"
+    add-mapping:
+      - "/**"
+
