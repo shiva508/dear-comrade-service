@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dear-comrade-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dear-comrade-service
+  template:
+    metadata:
+      labels:
+        app: dear-comrade-service
+    spec:
+      containers:
+        - name: app
+          image: dasari508201/dear-comrade-service:0.0.1
+          ports:
+            - containerPort: 8888
+          #          env:
+          #            - name: MONGO_URL
+          #              value: mongodb://mongo:27017/dev
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dear-comrade-service
+spec:
+  selector:
+    app: dear-comrade-service
+  ports:
+    - port: 80
+      targetPort: 8888
+  type: LoadBalancer

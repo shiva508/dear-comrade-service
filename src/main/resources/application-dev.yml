@@ -3,18 +3,10 @@ server:
 spring:
   application:
     name: dear-comrade-service
-  datasource:
-    url: jdbc:postgresql://postgres:5432/comrade
-    username: dear
-    password: comrade
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
     generate-ddl: true
-    show-sql: true
 management:
   endpoints:
     web:

@@ -47,8 +47,6 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yaml"
     ports:
       - 9090:9090
-  #      links:
-  #        - node-exporter:node-exporter
   grafana:
     image: grafana/grafana-oss:8.5.2
     pull_policy: always
@@ -64,6 +62,5 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_SERVER_DOMAIN=localhost
-      # Enabled for logging
       - GF_LOG_MODE=console file
       - GF_LOG_FILTERS=alerting.notifier.slack:debug alertmanager:debug ngalert:debug
