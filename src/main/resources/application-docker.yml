@@ -1,0 +1,43 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: dear-comrade-service
+  datasource:
+    url: jdbc:postgresql://postgres:5432/comrade
+    username: dear
+    password: comrade
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - prometheus
+web:
+  cors:
+    allowed-origins:
+      - "http://localhost:4200"
+    allowed-methods:
+      - GET
+      - POST
+      - PATCH
+      - PUT
+      - DELETE
+      - OPTIONS
+      - HEAD
+    max-age: 3600
+    allowed-headers:
+      - "Requestor-Type"
+    exposed-headers:
+      - "X-Get-Header"
+    add-mapping:
+      - "/**"
+
